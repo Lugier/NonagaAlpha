@@ -1,0 +1,5 @@
+.DS_Store
+error.log
+training.log
+__pycache__/
+.pytest_cache/

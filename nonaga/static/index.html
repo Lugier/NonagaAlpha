@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonaga AI - Web Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar Menu -->
+        <aside class="glass-panel sidebar">
+            <h1 class="logo-title">NONAGA<span class="accent">.AI</span></h1>
+            
+            <div class="status-box">
+                <p>Status: <span id="game-status" class="status-text">Ready to Play</span></p>
+                <p>Turn: <span id="turn-indicator" class="turn-red">RED</span></p>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>Play As</label>
+                    <div class="toggle-group">
+                        <button class="btn btn-toggle active" data-color="red" id="btn-play-red">RED</button>
+                        <button class="btn btn-toggle" data-color="black" id="btn-play-black">BLACK</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Opponent AI</label>
+                    <select id="ai-select" class="glass-select">
+                        <option value="random">Random Bot</option>
+                        <option value="heuristic-3">Alpha-Beta (Depth 3)</option>
+                        <option value="heuristic-5">Alpha-Beta (Depth 5)</option>
+                        <option value="alphazero-nonagazero.pt" selected>AlphaZero (Master Model)</option>
+                    </select>
+                </div>
+
+                <button id="btn-restart" class="btn btn-primary">RESTART GAME</button>
+            </div>
+            
+            <div class="instructions">
+                <h3>How to play</h3>
+                <ol>
+                    <li>Click your piece to selecting it.</li>
+                    <li>Click a highlighted empty hex to slide it.</li>
+                    <li>Click an edge hex to remove it.</li>
+                    <li>Click a valid spot to place the hex.</li>
+                </ol>
+            </div>
+        </aside>
+
+        <!-- Main Game Area -->
+        <main class="game-area">
+            <div id="loading-overlay" class="hidden glass-panel">
+                <div class="spinner"></div>
+                <p>AI is thinking...</p>
+            </div>
+            
+            <!-- SVG Hex Grid Container -->
+            <div class="board-container">
+                <svg id="hex-grid" viewBox="-120 -120 240 240" xmlns="http://www.w3.org/2000/svg">
+                    <g id="hex-layer"></g>
+                    <g id="pieces-layer"></g>
+                    <g id="highlights-layer"></g>
+                </svg>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

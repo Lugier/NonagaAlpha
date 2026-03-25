@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nonaga-ai"
+version = "0.1.0"
+description = "Executable Nonaga engine, strong search agent, and self-play tuner"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{name = "OpenAI"}]
+dependencies = []
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
