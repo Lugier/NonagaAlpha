@@ -40,7 +40,7 @@ For the advanced AlphaZero mode, the engine uses a **Deep Residual CNN**:
 - **Current Limit**: Set to 30.0 seconds for deep analysis.
 
 #### B. AlphaZero MCTS (`mcts.py`)
-- **Simulations**: Default 400 per move for high-quality play.
+- **Simulations**: Default 1600 per move for high-quality play.
 - **Logic**: Uses the neural network to guide the tree search via the PUCT (Predictor Upper Confidence Bound applied to Trees) formula.
 - **Efficiency**: Keeps the best model cached in GPU VRAM for sub-second response times.
 

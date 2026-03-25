@@ -108,7 +108,7 @@ def get_ai_move(req: AIConfigRequest):
             else:
                 net = MODEL_CACHE[model_path]
             
-            config = MCTSConfig(num_simulations=400, temperature=0.0)
+            config = MCTSConfig(num_simulations=1600, temperature=0.0)
             agent = MCTSAgent(net, config)
             mv = agent.choose_move(state)
             
