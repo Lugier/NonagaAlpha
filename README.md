@@ -70,20 +70,49 @@ The engine is rigorously tested with regression tests for the rule engine and se
 pytest tests/
 ```
 
+## 🏠 Web Interface
+NonagaAlpha comes with a built-in **Web UI** for interactive play.
+- **Port:** Default is 8888.
+- **Backend:** FastAPI (Python).
+- **Frontend:** Vanilla JS / HTML5.
+- **Features:** Real-time move visualization, legal move highlighting, and AI selection.
+
+To launch the web interface:
+```bash
+python3 -m nonaga.cli web --port 8888
+```
+
+---
+
+## ☁️ RunPod Deployment
+The engine is pre-configured for **RunPod** instances (Ubuntu 22.04 + CUDA).
+1. **Connect:** Use the provided SSH credentials.
+2. **Setup:** Run `scripts/runpod_setup.sh` to install dependencies.
+3. **Start Game:** Use the `nonaga_web` tmux session to keep the server running 24/7.
+4. **Access:** Click the "Connect" button in RunPod and select "HTTP Service [Port 8888]".
+
+---
+
+## 📦 Large File Storage (Git LFS)
+This repository contains over **4.4GB** of trained model weights and replay buffers. 
+**Note:** You must have [Git LFS](https://git-lfs.github.com/) installed to download the `.pt` files correctly.
+
+```bash
+# Install Git LFS
+git lfs install
+# Pull the large weight files
+git lfs pull
+```
+
 ---
 
 ## 🧠 Project Architecture
-
-- `nonaga/nn.py`: The Deep CNN architecture optimized for game state evaluation.
-- `nonaga/mcts.py`: Monte Carlo Tree Search implementation with lazy expansion.
-- `nonaga/train_nn_parallel.py`: The master training pipeline for high-throughput self-play.
-- `nonaga/geometry.py`: Hexadecimal coordinate system and graph-theoretic win detection.
-- `nonaga/rules.py`: The core game rule engine.
+See [architecture_overview.md](architecture_overview.md) for a deep dive into the Neural Network and MCTS logic.
 
 ---
 
 ## 📜 Implementation Notes
-NonagaAlpha handles the complex "edge-disc sliding" rule using a strong geometric approximation (half-plane contact test) which is regression-tested for correctness. The Connectivity Win is detected by solving for 3-node connected subgraphs in the occupied hex-grid.
+NonagaAlpha handles the complex "edge-disc sliding" rule using a strong geometric approximation (half-plane contact test). The AlphaZero model was trained over **40 iterations** on a 3090 GPU, producing a highly competitive agent.
 
 ---
 
